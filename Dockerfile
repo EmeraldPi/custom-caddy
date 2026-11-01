@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.7
 
-FROM caddy:2.11.4-builder AS builder
+FROM caddy:2.11.7-builder AS builder
 RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/root/.cache/go-build \
     xcaddy build \
@@ -12,5 +12,5 @@ RUN --mount=type=cache,target=/go/pkg/mod \
         --with github.com/hslatman/caddy-crowdsec-bouncer/appsec
 
 
-FROM caddy:2.11.4
+FROM caddy:2.11.7
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
